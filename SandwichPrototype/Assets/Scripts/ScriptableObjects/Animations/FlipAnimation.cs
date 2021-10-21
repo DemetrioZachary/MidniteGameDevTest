@@ -21,10 +21,10 @@ public class FlipAnimation : SOAnimation
 
         pivot.position = startPosition;
         pivot.eulerAngles = Vector3.zero;
-        var os = startCell.GetObjects();
-        for (int i = 0; i < os.Length; i++)
+        var pieces = startCell.Pieces;
+        for (int i = 0; i < pieces.Count; i++)
         {
-            os[i].SetParent(pivot, true);
+            pieces[i].transform.SetParent(pivot, true);
         }
 
         float time = 0f;
@@ -39,9 +39,9 @@ public class FlipAnimation : SOAnimation
         pivot.position = endPosition;
         pivot.eulerAngles = endRotation;
 
-        for (int i = 0; i < os.Length; i++)
+        for (int i = 0; i < pieces.Count; i++)
         {
-            os[i].SetParent(null, true);
+            pieces[i].transform.SetParent(null, true);
         }
 
         Callback?.Invoke();

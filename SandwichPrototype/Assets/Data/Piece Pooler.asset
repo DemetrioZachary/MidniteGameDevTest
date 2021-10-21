@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72732dbcc75b3d847a673d8ba2f86b9b, type: 3}
-  m_Name: Bread
+  m_Script: {fileID: 11500000, guid: b34552a3a3f686d4ea7df429eb40ac0d, type: 3}
+  m_Name: Piece Pooler
   m_EditorClassIdentifier: 
-  type: 0
-  mesh: {fileID: -4548727101508622366, guid: ea7f2a998f4a35d4285a9b8cb0d40f2c, type: 3}
-  material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}
+  prefab: {fileID: 5764962964242528906, guid: 58b330f041a4761459331ab826c2deae, type: 3}
+  maxInstances: 100

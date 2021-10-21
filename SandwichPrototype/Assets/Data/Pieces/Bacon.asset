@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Bacon
   m_EditorClassIdentifier: 
   type: 1
-  prefab: {fileID: 5182423098906426125, guid: ffac4a5abd22ed14997660b65eb474a1, type: 3}
+  mesh: {fileID: -5473922428828633816, guid: 6fb9d0a78261393469bd67c1316946a9, type: 3}
+  material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}

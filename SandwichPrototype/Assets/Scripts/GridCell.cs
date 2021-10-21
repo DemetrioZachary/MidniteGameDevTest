@@ -9,21 +9,19 @@ public struct Piece
 
 public class GridCell
 {
-    public List<Piece> pieces;
+    // Pieces are arranged from bottom to top
+    List<Piece> pieces;
+    Vector3 position;
 
-    public Vector3 Position { get; set; }
+    public GridCell(Vector3 position)
+    {
+        this.position = position;
+    }
+
+    public Vector3 Position => position;
     public bool IsEmpty => Depth == 0;
     public int Depth => pieces == null ? 0 : pieces.Count;
-
-    public Transform[] GetObjects()
-    {
-        Transform[] objs = new Transform[pieces.Count];
-        for (int i = 0; i < objs.Length; i++)
-        {
-            objs[i] = pieces[i].transform;
-        }
-        return objs;
-    }
+    public List<Piece> Pieces => pieces;
 
     public void AddToCell(Piece piece)
     {
@@ -32,7 +30,6 @@ public class GridCell
 
     public void AddToCell(List<Piece> newPieces)
     {
-        int depth = Depth;
         if (pieces == null)
         {
             pieces = newPieces;
@@ -40,11 +37,6 @@ public class GridCell
         else
         {
             pieces.AddRange(newPieces);
-        }
-
-        for (int i = 0; i < newPieces.Count; i++)
-        {
-            //newPieces[i].transform.position = Position + Vector3.up * (depth + i) * 0.1f;
         }
     }
 

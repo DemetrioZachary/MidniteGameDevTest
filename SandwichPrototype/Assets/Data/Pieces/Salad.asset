@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Salad
   m_EditorClassIdentifier: 
   type: 1
-  prefab: {fileID: 1591320745606148548, guid: a5be859b42ee60148b2bf3bf21cff14b, type: 3}
+  mesh: {fileID: 7113742550581899826, guid: e4f96ee737602334b9f2927b67181bfd, type: 3}
+  material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}

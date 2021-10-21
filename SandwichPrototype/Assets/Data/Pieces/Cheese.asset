@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   type: 1
-  prefab: {fileID: 2771137979078801217, guid: 5169a092c92b9d345981395a4e02e422, type: 3}
+  mesh: {fileID: -2719439086681959747, guid: 95296acc482b5df439c627a9bea7355a, type: 3}
+  material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72732dbcc75b3d847a673d8ba2f86b9b, type: 3}
-  m_Name: Bread
+  m_Name: Onion
   m_EditorClassIdentifier: 
-  type: 0
-  mesh: {fileID: -4548727101508622366, guid: ea7f2a998f4a35d4285a9b8cb0d40f2c, type: 3}
+  type: 1
+  mesh: {fileID: 3209097409963520316, guid: c77eac8d54eae40469b6495263e744be, type: 3}
   material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}

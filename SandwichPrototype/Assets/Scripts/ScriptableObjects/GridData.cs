@@ -11,14 +11,4 @@ public class GridData : ScriptableObject
     {
         return pieces[coords.x + size * coords.y];
     }
-
-#if UNITY_EDITOR
-    void OnValidate()
-    {
-        if (pieces.Length != size * size)
-        {
-            Array.Resize(ref pieces, size * size);
-        }
-    }
-#endif
 }

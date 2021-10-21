@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72732dbcc75b3d847a673d8ba2f86b9b, type: 3}
-  m_Name: Bread
+  m_Script: {fileID: 11500000, guid: d6e991fad3a570e4299741924af30c4f, type: 3}
+  m_Name: Win Condition Bread Top-Bottom
   m_EditorClassIdentifier: 
-  type: 0
-  mesh: {fileID: -4548727101508622366, guid: ea7f2a998f4a35d4285a9b8cb0d40f2c, type: 3}
-  material: {fileID: 2100000, guid: 987d068f95db83e41bf96cb093f97f2c, type: 2}
