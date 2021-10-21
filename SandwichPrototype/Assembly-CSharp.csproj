@@ -53,12 +53,17 @@
     <UnityVersion>2020.3.15f2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PieceData.cs" />
     <Compile Include="Assets\PrsdTech\SO Events\SOEventListenerComponent.cs" />
     <Compile Include="Assets\PrsdTech\SO Events\SOEvent.cs" />
     <Compile Include="Assets\Scripts\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\GameGrid.cs" />
     <Compile Include="Assets\PrsdTech\SO Events\SOEventListener.cs" />
-    <Compile Include="Assets\Scripts\PieceData.cs" />
+    <Compile Include="Assets\Scripts\GridCell.cs" />
+    <Compile Include="Assets\Scripts\GridData.cs" />
+    <Compile Include="Assets\Scripts\FlipAnimation.cs" />
+    <Compile Include="Assets\Scripts\GlobalData.cs" />
+    <Compile Include="Assets\Scripts\SOAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game Developer Test Assets\Materials\Shaders\Checker_Shader.shader" />

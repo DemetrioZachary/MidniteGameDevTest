@@ -6,4 +6,5 @@ public enum PieceType { Bread, Ingredient }
 public class PieceData : ScriptableObject
 {
     public PieceType type;
+    public GameObject prefab;
 }
