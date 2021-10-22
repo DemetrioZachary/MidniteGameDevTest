@@ -10,11 +10,12 @@ public class ControlsManager : MonoBehaviour
 {
     [SerializeField] SOEvent inputBeganEvent;
     [SerializeField] SOEvent inputDragEvent;
+    [SerializeField] SOEvent inputEndEvent;
 
     void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || Input.GetMouseButtonUp(0))
         {
             Vector3 pos = Input.mousePosition;
             if (Input.GetMouseButtonDown(0))
@@ -27,6 +28,14 @@ public class ControlsManager : MonoBehaviour
 #endif
             {
                 inputBeganEvent.Invoke(new InputEventArgs { position = pos });
+            }
+#if UNITY_EDITOR
+            else if (Input.GetMouseButtonUp(0))
+#else
+            else if (touch.phase == TouchPhase.Ended)
+#endif
+            {
+                inputEndEvent.Invoke(new InputEventArgs { position = pos });
             }
             else
             {

@@ -3,16 +3,16 @@ using PrsdTech.SO.Events;
 
 public partial class GameGrid : MonoBehaviour
 {
-    //[SerializeField] LevelData level;
     [Header("Config")]
-    //[SerializeField] LevelGenerator generator;
     [SerializeField] LevelPack levelPack;
+    [SerializeField] LevelGenerator generator;
     [SerializeField] PiecePooler piecePooler;
     [SerializeField] WinCondition winCondition;
     [SerializeField] SOAnimation soAnimation;
     [Header("Events")]
     [SerializeField] SOEventListener inputBegunListener;
     [SerializeField] SOEventListener inputDragListener;
+    [SerializeField] SOEventListener inputEndListener;
     [SerializeField] SOEvent winEvent;
     [SerializeField] SOEvent loseEvent;
     [SerializeField] SOEvent packCompletedEvent;
@@ -20,6 +20,8 @@ public partial class GameGrid : MonoBehaviour
 
     LevelData level;
     int size;
+
+    Vector3 startDragPosition;
     bool dragValid;
     GridCell startCell;
 
@@ -31,12 +33,20 @@ public partial class GameGrid : MonoBehaviour
 
         inputBegunListener.Enable(OnInputBegan);
         inputDragListener.Enable(OnInputDrag);
+        inputEndListener.Enable(OnInputEnd);
     }
 
     void OnDisable()
     {
         inputBegunListener.Disable();
         inputDragListener.Disable();
+        inputEndListener.Disable();
+    }
+
+    public void GenerateRandomLevel()
+    {
+        level = generator.Generate();
+        InitializeGrid();
     }
 
     public void LoadNextLevel()
@@ -52,7 +62,6 @@ public partial class GameGrid : MonoBehaviour
     public void InitializeGrid()
     {
         piecePooler.RecycleAll();
-        //level = generator.Generate();
 
         size = level.size;
         transform.position = new Vector3(size * 0.5f, 0f, size * 0.5f);
@@ -73,9 +82,21 @@ public partial class GameGrid : MonoBehaviour
         }
     }
 
+    bool GetCellFromPosition(Vector3 position, out GridCell cell)
+    {
+        int x = (int)position.x;
+        int z = (int)position.z;
+        if (x >= 0 && x < size && z >= 0 && z < size)
+        {
+            cell = cells[x + size * z];
+            return true;
+        }
+        cell = null;
+        return false;
+    }
+
     bool GetCellFromInput(Vector3 position, out GridCell cell)
     {
-        cell = null;
         var ray = Camera.main.ScreenPointToRay(position);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, GameUtility.gridMask))
         {
@@ -83,6 +104,7 @@ public partial class GameGrid : MonoBehaviour
             cell = cells[(int)p.x + size * (int)p.z];
             return true;
         }
+        cell = null;
         return false;
     }
 
@@ -94,6 +116,7 @@ public partial class GameGrid : MonoBehaviour
         {
             if (!cell.IsEmpty)
             {
+                startDragPosition = (args as InputEventArgs).position;
                 startCell = cell;
                 dragValid = true;
             }
@@ -119,6 +142,31 @@ public partial class GameGrid : MonoBehaviour
         {
             dragValid = false;
         }
+    }
+
+    void OnInputEnd(SOEventArgs args)
+    {
+        if (!dragValid || !(args is InputEventArgs)) { return; }
+
+        Vector3 diff = (args as InputEventArgs).position - startDragPosition;
+        if (diff.sqrMagnitude > Mathf.Epsilon)
+        {
+            Vector3 direction;
+            if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
+            {
+                direction = diff.x > 0f ? Vector3.right : Vector3.left;
+            }
+            else
+            {
+                direction = diff.y > 0f ? Vector3.forward : Vector3.back;
+            }
+
+            if (GetCellFromPosition(startCell.Position + direction, out GridCell cell) && !cell.IsEmpty)
+            {
+                AddAnimationToQueue(startCell, cell);
+            }
+        }
+        dragValid = false;
     }
 
     void CheckCells()

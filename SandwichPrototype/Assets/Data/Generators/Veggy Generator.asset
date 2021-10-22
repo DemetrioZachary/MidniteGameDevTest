@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Veggy Generator
   m_EditorClassIdentifier: 
   size: 4
-  difficulty: 3
+  ingredientsCount: 5
   bread: {fileID: 11400000, guid: a5bcb7eb7a77b93468292fa4ca0a5aa8, type: 2}
   ingredients:
   - {fileID: 11400000, guid: 8d2e3fe2685f1674caf47c21889516e6, type: 2}
