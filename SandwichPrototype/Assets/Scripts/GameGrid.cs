@@ -3,9 +3,10 @@ using PrsdTech.SO.Events;
 
 public partial class GameGrid : MonoBehaviour
 {
-    [SerializeField] GridData level;
+    //[SerializeField] LevelData level;
     [Header("Config")]
-    [SerializeField] LevelGenerator generator;
+    //[SerializeField] LevelGenerator generator;
+    [SerializeField] LevelPack levelPack;
     [SerializeField] PiecePooler piecePooler;
     [SerializeField] WinCondition winCondition;
     [SerializeField] SOAnimation soAnimation;
@@ -14,17 +15,19 @@ public partial class GameGrid : MonoBehaviour
     [SerializeField] SOEventListener inputDragListener;
     [SerializeField] SOEvent winEvent;
     [SerializeField] SOEvent loseEvent;
+    [SerializeField] SOEvent packCompletedEvent;
     [SerializeField] SOEvent moveEvent;
 
+    LevelData level;
     int size;
     bool dragValid;
-    Vector2Int startCoords;
+    GridCell startCell;
 
     GridCell[] cells;
 
     void OnEnable()
     {
-        InitializeGrid();
+        LoadNextLevel();
 
         inputBegunListener.Enable(OnInputBegan);
         inputDragListener.Enable(OnInputDrag);
@@ -36,11 +39,20 @@ public partial class GameGrid : MonoBehaviour
         inputDragListener.Disable();
     }
 
+    public void LoadNextLevel()
+    {
+        if (!levelPack.GetNextLevel(out level))
+        {
+            packCompletedEvent.Invoke();
+            return;
+        }
+        InitializeGrid();
+    }
+
     public void InitializeGrid()
     {
         piecePooler.RecycleAll();
-
-        level = generator.Generate();
+        //level = generator.Generate();
 
         size = level.size;
         transform.position = new Vector3(size * 0.5f, 0f, size * 0.5f);
@@ -61,19 +73,14 @@ public partial class GameGrid : MonoBehaviour
         }
     }
 
-    GridCell GetCell(Vector2Int coords)
+    bool GetCellFromInput(Vector3 position, out GridCell cell)
     {
-        return cells[coords.x + level.size * coords.y];
-    }
-
-    bool GetCoordsFromInput(Vector3 position, out Vector2Int coords)
-    {
-        coords = Vector2Int.zero;
+        cell = null;
         var ray = Camera.main.ScreenPointToRay(position);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, GameUtility.gridMask))
         {
             Vector3 p = hitInfo.point;
-            coords = new Vector2Int((int)p.x, (int)p.z);
+            cell = cells[(int)p.x + size * (int)p.z];
             return true;
         }
         return false;
@@ -83,11 +90,11 @@ public partial class GameGrid : MonoBehaviour
     {
         if (!(args is InputEventArgs)) { return; }
 
-        if (GetCoordsFromInput((args as InputEventArgs).position, out Vector2Int coords))
+        if (GetCellFromInput((args as InputEventArgs).position, out GridCell cell))
         {
-            if (!GetCell(coords).IsEmpty)
+            if (!cell.IsEmpty)
             {
-                startCoords = coords;
+                startCell = cell;
                 dragValid = true;
             }
         }
@@ -97,15 +104,13 @@ public partial class GameGrid : MonoBehaviour
     {
         if (!dragValid || !(args is InputEventArgs)) { return; }
 
-        if (GetCoordsFromInput((args as InputEventArgs).position, out Vector2Int coords))
+        if (GetCellFromInput((args as InputEventArgs).position, out GridCell cell))
         {
-            if (coords != startCoords)
+            if (cell != startCell)
             {
-                GridCell endCell = GetCell(coords);
-                if (!endCell.IsEmpty && !AnimationQueueFull)
+                if (!cell.IsEmpty)
                 {
-                    GridCell startCell = GetCell(startCoords);
-                    AddAnimationToQueue(startCell, endCell);
+                    AddAnimationToQueue(startCell, cell);
                 }
                 dragValid = false;
             }
@@ -136,16 +141,21 @@ public partial class GameGrid : MonoBehaviour
             }
         }
 
-        if (count == 1 || allCellsIsolated)
+        if (allCellsIsolated) // WinCondition can be extended to a wider control level
         {
-            if (winCondition.Check(cells[index].Pieces))
+            if (count == 1)
             {
-                Debug.Log("Win");
-                winEvent.Invoke();
+                if (winCondition.Check(cells[index].Pieces))
+                {
+                    winEvent.Invoke();
+                }
+                else
+                {
+                    loseEvent.Invoke();
+                }
             }
             else
             {
-                Debug.Log("Lose");
                 loseEvent.Invoke();
             }
         }

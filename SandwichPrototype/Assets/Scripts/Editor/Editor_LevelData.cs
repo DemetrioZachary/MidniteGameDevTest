@@ -1,23 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GridData))]
-public class Drawer_GridViewAttribute : Editor
+[CustomEditor(typeof(LevelData))]
+public class Editor_LevelData : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
         EditorGUILayout.Space();
+        DrawGridInInspector(target as LevelData);
+    }
 
-        serializedObject.Update();
+    public static void DrawGridInInspector(LevelData data)
+    {
+        int size = data.size;
 
-        int size = serializedObject.FindProperty("size").intValue;
-        var pieces = serializedObject.FindProperty("pieces");
-
-        if (pieces.arraySize != size * size)
+        if (data.pieces.Length != size * size)
         {
-            pieces.arraySize = size * size;
+            Array.Resize(ref data.pieces, size * size);
         }
 
         Rect rect = EditorGUILayout.GetControlRect(false, Screen.width * 0.7f);
@@ -30,7 +32,7 @@ public class Drawer_GridViewAttribute : Editor
         {
             for (int x = 0; x < size; x++)
             {
-                var p = (target as GridData).pieces[x + size * y];
+                var p = data.pieces[x + size * y];
                 string l = (x + size * y).ToString() + " " + (p ? p.name : "");
                 EditorGUI.LabelField(rect, l, EditorStyles.helpBox);
                 rect.x += step;
@@ -38,7 +40,5 @@ public class Drawer_GridViewAttribute : Editor
             rect.x -= size * step;
             rect.y -= step;
         }
-
-        serializedObject.ApplyModifiedProperties();
     }
 }

@@ -17,12 +17,12 @@ public class LevelGenerator : ScriptableObject
         Random.InitState(System.DateTime.Now.Second);
     }
 
-    public GridData Generate()
+    public LevelData Generate()
     {
         int depth = Mathf.Min(ingredientsCount, size * size - 2);
         int start = Random.Range(0, size * size);
 
-        var data = CreateInstance<GridData>();
+        var data = CreateInstance<LevelData>();
         data.size = size;
         data.pieces = new PieceData[size * size];
 

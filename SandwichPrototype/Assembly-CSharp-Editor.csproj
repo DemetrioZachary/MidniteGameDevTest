@@ -53,10 +53,10 @@
     <UnityVersion>2020.3.15f2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Editor\Drawer_GridViewAttribute.cs" />
+    <Compile Include="Assets\Scripts\Editor\Editor_LevelData.cs" />
+    <Compile Include="Assets\Scripts\Editor\Editor_LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\SO Events\Editor\Editor_SOEvent.cs" />
     <Compile Include="Assets\Scripts\SO Events\Editor\Drawer_SOEventListener.cs" />
-    <Compile Include="Assets\Scripts\Editor\Editor_LevelGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -17,6 +17,7 @@ public partial class GameGrid : MonoBehaviour
     void AddAnimationToQueue(GridCell startCell, GridCell endCell)
     {
         if (moves == null) { moves = new Queue<Move>(GameUtility.movesQueueLenght); }
+        if (AnimationQueueFull) { return; }
 
         moves.Enqueue(new Move() {
             startCell = startCell,
@@ -40,10 +41,13 @@ public partial class GameGrid : MonoBehaviour
         while (moves.Count > 0)
         {
             Move move = moves.Dequeue();
-            yield return soAnimation.Play(move.startCell, move.endCell);
+            if (!move.startCell.IsEmpty && !move.endCell.IsEmpty)
+            {
+                yield return soAnimation.Play(move.startCell, move.endCell);
 
-            move.startCell.MoveToCell(move.endCell);
-            moveEvent.Invoke();
+                move.startCell.MoveToCell(move.endCell);
+                moveEvent.Invoke();
+            }
         }
         CheckCells();
         inAnimation = false;

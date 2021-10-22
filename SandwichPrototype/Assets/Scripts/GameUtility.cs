@@ -11,4 +11,6 @@ public static class GameUtility
     public static int gridMask = LayerMask.GetMask("Grid");
 
     public static Vector3 pieceScale = Vector3.one * 0.9f;
+
+    public const string levelAssetFolderPath = "Assets/Data/Levels/";
 }
