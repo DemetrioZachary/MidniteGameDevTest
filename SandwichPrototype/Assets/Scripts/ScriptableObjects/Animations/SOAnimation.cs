@@ -3,7 +3,11 @@ using UnityEngine;
 
 public abstract class SOAnimation : ScriptableObject
 {
-    public float duration = 1f;
+    [SerializeField] float duration = 1f;
+
+    public float DurationScale { get; set; } = 1f;
+
+    protected float ScaledDuration => duration * DurationScale;
 
     public abstract IEnumerator Play(GridCell startCell, GridCell endCell);
 }

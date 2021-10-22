@@ -53,24 +53,48 @@
     <UnityVersion>2020.3.15f2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GlobalData.cs" />
+    <Compile Include="Assets\Scripts\Pools\PiecePooler.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Animations\SOAnimation.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\PieceData.cs" />
     <Compile Include="Assets\Scripts\SO Events\SOEventListenerComponent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Animations\FlipAnimation.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinConditionBreadTopBottom.cs" />
     <Compile Include="Assets\Scripts\SO Events\SOEvent.cs" />
     <Compile Include="Assets\Scripts\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\GameGrid.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GridData.cs" />
+    <Compile Include="Assets\Scripts\Pools\DynamicPrefabPool.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinCondition.cs" />
     <Compile Include="Assets\Scripts\GridCell.cs" />
     <Compile Include="Assets\Scripts\SO Events\SOEventListener.cs" />
-    <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinCondition.cs" />
-    <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinConditionBreadTopBottom.cs" />
-    <Compile Include="Assets\Scripts\Pools\DynamicPrefabPool.cs" />
-    <Compile Include="Assets\Scripts\Pools\PiecePooler.cs" />
+    <Compile Include="Assets\Scripts\GameGrid.Move.cs" />
+    <Compile Include="Assets\Scripts\UI\FalshingElement.cs" />
+    <Compile Include="Assets\Scripts\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\GameUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Game Developer Test Assets\Materials\Shaders\Checker_Shader.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

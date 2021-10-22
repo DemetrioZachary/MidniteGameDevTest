@@ -1,21 +1,24 @@
 using UnityEngine;
 using PrsdTech.SO.Events;
 
-public class GameGrid : MonoBehaviour
+public partial class GameGrid : MonoBehaviour
 {
     [SerializeField] GridData level;
+    [Header("Config")]
+    [SerializeField] LevelGenerator generator;
     [SerializeField] PiecePooler piecePooler;
+    [SerializeField] WinCondition winCondition;
+    [SerializeField] SOAnimation soAnimation;
+    [Header("Events")]
     [SerializeField] SOEventListener inputBegunListener;
     [SerializeField] SOEventListener inputDragListener;
-    [SerializeField] SOAnimation soAnimation;
-    [SerializeField] WinCondition winCondition;
+    [SerializeField] SOEvent winEvent;
+    [SerializeField] SOEvent loseEvent;
+    [SerializeField] SOEvent moveEvent;
 
     int size;
     bool dragValid;
     Vector2Int startCoords;
-
-    float lastAnimationStart;
-    bool InAnimation => Time.time - lastAnimationStart < soAnimation.duration;
 
     GridCell[] cells;
 
@@ -36,6 +39,8 @@ public class GameGrid : MonoBehaviour
     public void InitializeGrid()
     {
         piecePooler.RecycleAll();
+
+        level = generator.Generate();
 
         size = level.size;
         transform.position = new Vector3(size * 0.5f, 0f, size * 0.5f);
@@ -65,7 +70,7 @@ public class GameGrid : MonoBehaviour
     {
         coords = Vector2Int.zero;
         var ray = Camera.main.ScreenPointToRay(position);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, GlobalData.gridMask))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, GameUtility.gridMask))
         {
             Vector3 p = hitInfo.point;
             coords = new Vector2Int((int)p.x, (int)p.z);
@@ -76,7 +81,7 @@ public class GameGrid : MonoBehaviour
 
     void OnInputBegan(SOEventArgs args)
     {
-        if (InAnimation || !(args is InputEventArgs)) { return; }
+        if (!(args is InputEventArgs)) { return; }
 
         if (GetCoordsFromInput((args as InputEventArgs).position, out Vector2Int coords))
         {
@@ -97,14 +102,10 @@ public class GameGrid : MonoBehaviour
             if (coords != startCoords)
             {
                 GridCell endCell = GetCell(coords);
-                if (!endCell.IsEmpty)
+                if (!endCell.IsEmpty && !AnimationQueueFull)
                 {
                     GridCell startCell = GetCell(startCoords);
-
-                    lastAnimationStart = Time.time;
-                    StartCoroutine(soAnimation.Play(startCell, endCell));
-                    startCell.MoveToCell(endCell, coords - startCoords);
-                    CheckCells();
+                    AddAnimationToQueue(startCell, endCell);
                 }
                 dragValid = false;
             }
@@ -119,6 +120,7 @@ public class GameGrid : MonoBehaviour
     {
         int count = 0;
         int index = -1;
+        bool allCellsIsolated = true;
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -126,18 +128,25 @@ public class GameGrid : MonoBehaviour
             {
                 count++;
                 index = i;
+
+                bool missingRightCell = (i + 1) % size == 0 || cells[i + 1].IsEmpty;
+                bool missingUpCell = i >= size * (size - 1) || cells[i + size].IsEmpty;
+                bool isolated = missingRightCell && missingUpCell;
+                allCellsIsolated &= isolated;
             }
         }
 
-        if (count == 1)
+        if (count == 1 || allCellsIsolated)
         {
             if (winCondition.Check(cells[index].Pieces))
             {
                 Debug.Log("Win");
+                winEvent.Invoke();
             }
             else
             {
                 Debug.Log("Lose");
+                loseEvent.Invoke();
             }
         }
     }

@@ -40,7 +40,7 @@ public class GridCell
         }
     }
 
-    public void MoveToCell(GridCell otherCell, Vector2Int dir)
+    public void MoveToCell(GridCell otherCell)
     {
         pieces.Reverse();
         otherCell.AddToCell(pieces);
