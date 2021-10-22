@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class GameUtility
 {
-    public const int movesQueueLenght = 3;
+    public const int movesQueueLenght = 2;
 
     public const float animationSpeedUpFactor = 0.7f;
 

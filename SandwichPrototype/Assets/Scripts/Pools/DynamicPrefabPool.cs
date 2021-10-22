@@ -48,6 +48,7 @@ namespace PrsdTech.Pools.Core
                 actives.RemoveAt(0);
             }
 
+            o.transform.parent = parent;
             o.transform.localPosition = p;
             o.transform.localRotation = r;
 

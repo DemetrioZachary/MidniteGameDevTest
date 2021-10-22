@@ -24,7 +24,7 @@ public class TileMerger : MonoBehaviour
 
         var cell = (args as MoveEventArgs).endCell;
         var elements = cell.Elements;
-        if (!(elements[0].data is TileData)) { return; }
+        if (elements == null || !(elements[0].data is TileData)) { return; }
 
         bool modified = true;
         while (modified && elements.Count > 1)

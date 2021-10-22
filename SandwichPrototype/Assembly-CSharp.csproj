@@ -60,15 +60,16 @@
     <Compile Include="Assets\Scripts\SO Events\SOEventListenerComponent.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Animations\FlipAnimation.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinConditionBreadTopBottom.cs" />
-    <Compile Include="Assets\Scripts\GameGrid.Move.cs" />
+    <Compile Include="Assets\Scripts\Grid\GameGrid.Move.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\ElementData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\LevelPack.cs" />
     <Compile Include="Assets\Scripts\SO Events\SOEvent.cs" />
     <Compile Include="Assets\Scripts\UI\FalshingElement.cs" />
     <Compile Include="Assets\Scripts\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinCondition2048.cs" />
-    <Compile Include="Assets\Scripts\GameGrid.cs" />
+    <Compile Include="Assets\Scripts\Grid\GameGrid.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Generators\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\UI\ModeSwitch.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\TileData.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\LevelData.cs" />
     <Compile Include="Assets\Scripts\Pools\DynamicPrefabPool.cs" />
@@ -76,10 +77,9 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\Win Conditions\WinCondition.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Generators\SandwichLevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Pools\ElementPooler.cs" />
-    <Compile Include="Assets\Scripts\GridCell.cs" />
+    <Compile Include="Assets\Scripts\Grid\GridCell.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\GameData.cs" />
     <Compile Include="Assets\Scripts\SO Events\SOEventListener.cs" />
-    <Compile Include="Assets\Scripts\UI\ModeSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

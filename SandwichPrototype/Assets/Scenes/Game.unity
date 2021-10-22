@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGraphic: {fileID: 619585836}
-  color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  color: {r: 0.85882354, g: 0.73333335, b: 0.2784314, a: 1}
   intensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040484307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 891958885e7f4ca4fb80071ceee66d29, type: 3}
   m_Name: 
