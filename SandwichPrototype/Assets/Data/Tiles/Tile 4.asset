@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34552a3a3f686d4ea7df429eb40ac0d, type: 3}
-  m_Name: Piece Pooler
+  m_Script: {fileID: 11500000, guid: ef5097f46394d724cb542172e88495f7, type: 3}
+  m_Name: Tile 4
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5764962964242528906, guid: 58b330f041a4761459331ab826c2deae, type: 3}
-  maxInstances: 100
+  value: 1
+  mesh: {fileID: 6432817093266519180, guid: b96cd723035303047b563dec21c14921, type: 3}
+  material: {fileID: 2100000, guid: 9954adcbee4d9134692a03d41eb8e3a2, type: 2}

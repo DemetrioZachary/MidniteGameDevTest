@@ -3,9 +3,9 @@ using UnityEngine;
 public enum PieceType { Bread, Ingredient }
 
 [CreateAssetMenu(menuName = "Sandwich/Piece")]
-public class PieceData : ScriptableObject
+public class PieceData : ElementData
 {
-    public PieceType type;
-    public Mesh mesh;
-    public Material material;
+    [SerializeField] PieceType type;
+
+    public PieceType Type => type;
 }

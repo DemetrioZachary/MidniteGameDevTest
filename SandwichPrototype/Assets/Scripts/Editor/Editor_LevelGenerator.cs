@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(LevelGenerator))]
+[CustomEditor(typeof(LevelGenerator), true)]
 public class Editor_LevelGenerator : Editor
 {
     LevelData data;

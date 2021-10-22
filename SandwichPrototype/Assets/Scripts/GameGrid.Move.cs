@@ -12,7 +12,7 @@ public partial class GameGrid : MonoBehaviour
     Queue<Move> moves;
     bool inAnimation;
 
-    bool AnimationQueueFull => moves != null && moves.Count == GameUtility.movesQueueLenght;
+    bool AnimationQueueFull => moves != null && moves.Count >= GameUtility.movesQueueLenght;
 
     void AddAnimationToQueue(GridCell startCell, GridCell endCell)
     {
@@ -26,11 +26,11 @@ public partial class GameGrid : MonoBehaviour
 
         if (inAnimation)
         {
-            soAnimation.DurationScale *= GameUtility.animationSpeedUpFactor;
+            gameData.SOAnimation.DurationScale *= GameUtility.animationSpeedUpFactor;
         }
         else
         {
-            soAnimation.DurationScale = 1f;
+            gameData.SOAnimation.DurationScale = 1f;
             StartCoroutine(AnimationQueue());
         }
     }
@@ -43,7 +43,7 @@ public partial class GameGrid : MonoBehaviour
             Move move = moves.Dequeue();
             if (!move.startCell.IsEmpty && !move.endCell.IsEmpty)
             {
-                yield return soAnimation.Play(move.startCell, move.endCell);
+                yield return gameData.SOAnimation.Play(move.startCell, move.endCell);
 
                 move.startCell.MoveToCell(move.endCell);
                 moveEvent.Invoke();

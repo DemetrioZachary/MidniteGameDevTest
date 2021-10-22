@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Sandwich/Level Generator")]
-public class LevelGenerator : ScriptableObject
+public class SandwichLevelGenerator : LevelGenerator
 {
-    [SerializeField] int size = 4;
     [SerializeField, Range(1, 10)] int ingredientsCount = 3;
     [SerializeField] PieceData bread;
     [SerializeField] PieceData[] ingredients;
@@ -12,12 +11,7 @@ public class LevelGenerator : ScriptableObject
     List<int> used;
     List<int> frontier;
 
-    void OnEnable()
-    {
-        Random.InitState(System.DateTime.Now.Second);
-    }
-
-    public LevelData Generate()
+    public override LevelData Generate()
     {
         int depth = Mathf.Min(ingredientsCount, size * size - 2);
         int start = Random.Range(0, size * size);

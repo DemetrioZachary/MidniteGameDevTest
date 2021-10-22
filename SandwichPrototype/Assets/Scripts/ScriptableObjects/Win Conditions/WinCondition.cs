@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class WinCondition : ScriptableObject
 {
-    public abstract bool Check(List<Piece> pieces);
+    public abstract bool Check(List<Element> pieces);
 }

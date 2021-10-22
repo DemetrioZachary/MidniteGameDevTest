@@ -4,11 +4,8 @@ using PrsdTech.SO.Events;
 public partial class GameGrid : MonoBehaviour
 {
     [Header("Config")]
-    [SerializeField] LevelPack levelPack;
-    [SerializeField] LevelGenerator generator;
-    [SerializeField] PiecePooler piecePooler;
-    [SerializeField] WinCondition winCondition;
-    [SerializeField] SOAnimation soAnimation;
+    [SerializeField] GameData gameData;
+    [SerializeField] ElementPooler elementPooler;
     [Header("Events")]
     [SerializeField] SOEventListener inputBegunListener;
     [SerializeField] SOEventListener inputDragListener;
@@ -45,13 +42,13 @@ public partial class GameGrid : MonoBehaviour
 
     public void GenerateRandomLevel()
     {
-        level = generator.Generate();
+        level = gameData.Generator.Generate();
         InitializeGrid();
     }
 
     public void LoadNextLevel()
     {
-        if (!levelPack.GetNextLevel(out level))
+        if (!gameData.LevelPack.GetNextLevel(out level))
         {
             packCompletedEvent.Invoke();
             return;
@@ -61,7 +58,7 @@ public partial class GameGrid : MonoBehaviour
 
     public void InitializeGrid()
     {
-        piecePooler.RecycleAll();
+        elementPooler.RecycleAll();
 
         size = level.size;
         transform.position = new Vector3(size * 0.5f, 0f, size * 0.5f);
@@ -75,8 +72,8 @@ public partial class GameGrid : MonoBehaviour
             var pieceData = level.pieces[i];
             if (pieceData)
             {
-                Transform t = piecePooler.Get(pieceData, position, Quaternion.identity).transform;
-                cell.AddToCell(new Piece { data = pieceData, transform = t });
+                Transform t = elementPooler.Get(pieceData, position, Quaternion.identity).transform;
+                cell.AddToCell(new Element { data = pieceData, transform = t });
             }
             cells[i] = cell;
         }
@@ -193,7 +190,7 @@ public partial class GameGrid : MonoBehaviour
         {
             if (count == 1)
             {
-                if (winCondition.Check(cells[index].Pieces))
+                if (gameData.WinCondition.Check(cells[index].Pieces))
                 {
                     winEvent.Invoke();
                 }

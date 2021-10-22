@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Piece
+public struct Element
 {
-    public PieceData data;
+    public ElementData data;
     public Transform transform;
 }
 
 public class GridCell
 {
     // Pieces are arranged from bottom to top
-    List<Piece> pieces;
+    List<Element> pieces;
     Vector3 position;
 
     public GridCell(Vector3 position)
@@ -21,14 +21,14 @@ public class GridCell
     public Vector3 Position => position;
     public bool IsEmpty => Depth == 0;
     public int Depth => pieces == null ? 0 : pieces.Count;
-    public List<Piece> Pieces => pieces;
+    public List<Element> Pieces => pieces;
 
-    public void AddToCell(Piece piece)
+    public void AddToCell(Element piece)
     {
-        AddToCell(new List<Piece> { piece });
+        AddToCell(new List<Element> { piece });
     }
 
-    public void AddToCell(List<Piece> newPieces)
+    public void AddToCell(List<Element> newPieces)
     {
         if (pieces == null)
         {

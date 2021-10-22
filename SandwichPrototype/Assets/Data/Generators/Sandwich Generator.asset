@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14593a5c470914489cf9b13bedcc2f5, type: 3}
-  m_Name: Level Generator
+  m_Script: {fileID: 11500000, guid: f5bc67ba2ba23b340bc7dc3764c0272c, type: 3}
+  m_Name: Sandwich Generator
   m_EditorClassIdentifier: 
   size: 4
-  ingredientsCount: 10
+  ingredientsCount: 3
   bread: {fileID: 11400000, guid: a5bcb7eb7a77b93468292fa4ca0a5aa8, type: 2}
   ingredients:
+  - {fileID: 11400000, guid: 43867bbd7befb5f46a4e1613f84e091d, type: 2}
   - {fileID: 11400000, guid: 939367ccffe644a4fa51667f50c0e7c8, type: 2}
   - {fileID: 11400000, guid: 8a6fff8ee9b5c43499e88d1ae5006ec0, type: 2}
   - {fileID: 11400000, guid: 773fda4b82f6e284da03b65fa051638e, type: 2}
@@ -23,4 +24,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11f7b852e20281b49bc7e38f2c823cf9, type: 2}
   - {fileID: 11400000, guid: 23979ec013f20fc4c8982e08896b2c27, type: 2}
   - {fileID: 11400000, guid: 0fd0b803360a3934fab25516c9fa55be, type: 2}
-  - {fileID: 11400000, guid: 43867bbd7befb5f46a4e1613f84e091d, type: 2}

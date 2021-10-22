@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14593a5c470914489cf9b13bedcc2f5, type: 3}
+  m_Script: {fileID: 11500000, guid: f5bc67ba2ba23b340bc7dc3764c0272c, type: 3}
   m_Name: Veggy Generator
   m_EditorClassIdentifier: 
   size: 4

@@ -4,5 +4,5 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public int size = 4;
-    public PieceData[] pieces;
+    public ElementData[] pieces;
 }

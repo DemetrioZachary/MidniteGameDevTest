@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5097f46394d724cb542172e88495f7, type: 3}
+  m_Name: Tile 512
+  m_EditorClassIdentifier: 
+  value: 8
+  mesh: {fileID: -3514956425189388456, guid: b8586437f54f2e14a9627f51d53f68f2, type: 3}
+  material: {fileID: 2100000, guid: 9954adcbee4d9134692a03d41eb8e3a2, type: 2}

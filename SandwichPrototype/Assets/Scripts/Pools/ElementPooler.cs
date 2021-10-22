@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using PrsdTech.Pools.Core;
 
-[CreateAssetMenu(menuName = "PrsdTech/ScriptableObjects/Pooler", order = 380)]
-public class PiecePooler : ScriptableObject
+[CreateAssetMenu(menuName = "ElementPooler", order = 380)]
+public class ElementPooler : ScriptableObject
 {
     [SerializeField] GameObject prefab = default;
     [SerializeField] int maxInstances = 100;
 
     DynamicPrefabPool pool;
 
-    public GameObject Get(PieceData data, Vector3 position, Quaternion rotation)
+    public GameObject Get(ElementData data, Vector3 position, Quaternion rotation)
     {
         if (pool == null)
         {
@@ -22,8 +22,8 @@ public class PiecePooler : ScriptableObject
         }
 
         GameObject o = pool.Get(position, rotation, out bool _);
-        o.GetComponent<MeshFilter>().mesh = data.mesh;
-        o.GetComponent<MeshRenderer>().material = data.material;
+        o.GetComponent<MeshFilter>().mesh = data.Mesh;
+        o.GetComponent<MeshRenderer>().material = data.Material;
         o.transform.localScale = GameUtility.pieceScale;
         return o;
     }
