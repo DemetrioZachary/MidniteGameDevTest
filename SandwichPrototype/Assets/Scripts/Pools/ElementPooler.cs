@@ -24,7 +24,7 @@ public class ElementPooler : ScriptableObject
         GameObject o = pool.Get(position, rotation, out bool _);
         o.GetComponent<MeshFilter>().mesh = data.Mesh;
         o.GetComponent<MeshRenderer>().material = data.Material;
-        o.transform.localScale = GameUtility.pieceScale;
+        o.transform.localScale = GameUtility.elementScale;
         return o;
     }
 

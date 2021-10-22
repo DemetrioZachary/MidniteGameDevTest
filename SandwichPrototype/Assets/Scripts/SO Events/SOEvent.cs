@@ -47,7 +47,10 @@ namespace PrsdTech.SO.Events
 
         public void Unsubscribe(ISOEventListener l)
         {
-            listeners.Remove(l);
+            if (listeners != null)
+            {
+                listeners.Remove(l);
+            }
         }
     }
 

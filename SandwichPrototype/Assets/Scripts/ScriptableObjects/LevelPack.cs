@@ -12,6 +12,11 @@ public class LevelPack : ScriptableObject
         currentLevel = 0;
     }
 
+    public void ResetProgress()
+    {
+        currentLevel = 0;
+    }
+
     public bool GetNextLevel(out LevelData level)
     {
         if (currentLevel < levels.Length)

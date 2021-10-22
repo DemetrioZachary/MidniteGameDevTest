@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea96609fc5d55514791b7caef45547bb, type: 3}
   m_Name: 2048 Game
   m_EditorClassIdentifier: 
-  levelPack: {fileID: 0}
+  levelPack: {fileID: 11400000, guid: 33b9e50a7f874c347969a796cf11be09, type: 2}
   generator: {fileID: 11400000, guid: 5ecee919505183240af9068ba5882b7c, type: 2}
   winCondition: {fileID: 11400000, guid: cae920727b88bd244986178cc7bc2628, type: 2}
   soAnimation: {fileID: 11400000, guid: ba0c9c02a17096548b314c8fe276b927, type: 2}

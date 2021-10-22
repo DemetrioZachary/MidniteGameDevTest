@@ -6,11 +6,11 @@ public static class GameUtility
 
     public const float animationSpeedUpFactor = 0.7f;
 
-    public const float pieceHeight = 0.1f;
+    public const float elementHeight = 0.09f;
+
+    public static Vector3 elementScale = new Vector3(-1f, 1f, -1f) * 0.9f;
 
     public static int gridMask = LayerMask.GetMask("Grid");
-
-    public static Vector3 pieceScale = Vector3.one * 0.9f;
 
     public const string levelAssetFolderPath = "Assets/Data/Levels/";
 }

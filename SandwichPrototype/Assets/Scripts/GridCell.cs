@@ -10,7 +10,7 @@ public struct Element
 public class GridCell
 {
     // Pieces are arranged from bottom to top
-    List<Element> pieces;
+    List<Element> elements;
     Vector3 position;
 
     public GridCell(Vector3 position)
@@ -20,8 +20,8 @@ public class GridCell
 
     public Vector3 Position => position;
     public bool IsEmpty => Depth == 0;
-    public int Depth => pieces == null ? 0 : pieces.Count;
-    public List<Element> Pieces => pieces;
+    public int Depth => elements == null ? 0 : elements.Count;
+    public List<Element> Elements => elements;
 
     public void AddToCell(Element piece)
     {
@@ -30,20 +30,20 @@ public class GridCell
 
     public void AddToCell(List<Element> newPieces)
     {
-        if (pieces == null)
+        if (elements == null)
         {
-            pieces = newPieces;
+            elements = newPieces;
         }
         else
         {
-            pieces.AddRange(newPieces);
+            elements.AddRange(newPieces);
         }
     }
 
     public void MoveToCell(GridCell otherCell)
     {
-        pieces.Reverse();
-        otherCell.AddToCell(pieces);
-        pieces = null;
+        elements.Reverse();
+        otherCell.AddToCell(elements);
+        elements = null;
     }
 }

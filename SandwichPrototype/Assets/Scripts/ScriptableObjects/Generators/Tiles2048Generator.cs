@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tiles2048Generator : LevelGenerator
 {
     [SerializeField] TileValue endValue = TileValue._1024;
-    [SerializeField, Range(2, 10)] int maxTilesCount = 5;
+    [SerializeField, Range(2, 14)] int maxTilesCount = 5;
     [SerializeField, Tooltip("Insert Tiles in order from 2 to 2048")] TileData[] tiles;
 
     List<int> used;

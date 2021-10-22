@@ -11,15 +11,15 @@ public class FlipAnimation : SOAnimation
         if (!pivot) { pivot = new GameObject("Pivot").transform; }
 
         Vector3 startPosition = (endCell.Position + startCell.Position) * 0.5f;
-        startPosition.y = startCell.Depth * GameUtility.pieceHeight;
+        startPosition.y = startCell.Depth * GameUtility.elementHeight;
         Vector3 endPosition = startPosition;
-        endPosition.y = endCell.Depth * GameUtility.pieceHeight;
+        endPosition.y = endCell.Depth * GameUtility.elementHeight;
 
         Vector3 endRotation = Vector3.Cross(startCell.Position - endCell.Position, Vector3.up).normalized * 180f;
 
         pivot.position = startPosition;
         pivot.eulerAngles = Vector3.zero;
-        var pieces = startCell.Pieces.ToArray();
+        var pieces = startCell.Elements.ToArray();
         for (int i = 0; i < pieces.Length; i++)
         {
             pieces[i].transform.SetParent(pivot, true);

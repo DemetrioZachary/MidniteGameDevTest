@@ -46,7 +46,7 @@ public partial class GameGrid : MonoBehaviour
                 yield return gameData.SOAnimation.Play(move.startCell, move.endCell);
 
                 move.startCell.MoveToCell(move.endCell);
-                moveEvent.Invoke();
+                moveEvent.Invoke(new MoveEventArgs() { endCell = move.endCell });
             }
         }
         CheckCells();

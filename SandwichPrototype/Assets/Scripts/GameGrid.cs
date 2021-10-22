@@ -1,6 +1,11 @@
 using UnityEngine;
 using PrsdTech.SO.Events;
 
+public class MoveEventArgs : SOEventArgs
+{
+    public GridCell endCell;
+}
+
 public partial class GameGrid : MonoBehaviour
 {
     [Header("Config")]
@@ -24,6 +29,8 @@ public partial class GameGrid : MonoBehaviour
 
     GridCell[] cells;
 
+    public GameData GameData => gameData;
+
     void OnEnable()
     {
         LoadNextLevel();
@@ -38,6 +45,12 @@ public partial class GameGrid : MonoBehaviour
         inputBegunListener.Disable();
         inputDragListener.Disable();
         inputEndListener.Disable();
+    }
+
+    public void LoadGameData(GameData data)
+    {
+        gameData = data;
+        LoadNextLevel();
     }
 
     public void GenerateRandomLevel()
@@ -190,7 +203,7 @@ public partial class GameGrid : MonoBehaviour
         {
             if (count == 1)
             {
-                if (gameData.WinCondition.Check(cells[index].Pieces))
+                if (gameData.WinCondition.Check(cells[index].Elements))
                 {
                     winEvent.Invoke();
                 }

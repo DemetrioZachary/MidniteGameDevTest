@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 2048 Generator
   m_EditorClassIdentifier: 
   size: 4
-  endValue: 6
-  maxTilesCount: 10
+  endValue: 8
+  maxTilesCount: 12
   tiles:
   - {fileID: 11400000, guid: 1c076c0306d6e8c46b2d605a9fa799a8, type: 2}
   - {fileID: 11400000, guid: 3b1b2d7bd52471140ac699a6bb1dd182, type: 2}
